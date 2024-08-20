@@ -9,6 +9,7 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const AppError = require('./utils/appError.js');
+const compression = require('compression');
 const globalErrorHandling = require('./controllers/errorController.js');
 
 const tourRouter = require('./routes/tourRoutes.js');
@@ -108,7 +109,7 @@ app.use(
 );
 // serving static file
 // app.use(express.static(`${__dirname}/public`));
-
+app.use(compression());
 // -----------end of middleware stack-------------------
 app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
